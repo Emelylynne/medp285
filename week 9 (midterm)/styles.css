@@ -1,0 +1,82 @@
+body {
+   
+        font-family: "Emilys Candy", serif;
+        font-weight: 470;
+        font-style:italic;
+      
+    margin: 0;
+    padding: 20;
+    background-color: #93ad8b;
+    color: #333;
+    
+}
+body {
+    background-image: url('nature2.gif'); /* Image file in the same folder */
+    background-size: cover; /* Scales image to cover the entire screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repeating */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    background: #7b9166;
+    padding: 20px;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 40px;
+}
+
+nav ul li a:hover {
+        text-decoration: underline;
+        color: #c4ebc5; /* Change text color when hovered */
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 25px;
+}
+img  {
+    max-width: 100%;
+    height: auto;
+    border-radius: 35px; /* Optional: adds rounded corners */
+}
+img {
+    transition: transform 0.3s ease-in-out;
+}
+img:hover {
+    transform: scale(1.1);
+}
+
+section {
+    background: rgb(93, 134, 111);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #31664a;
+    color: #9dc6a9;
+    position: absolute;
+    width: 100%;
+    bottom: 3;
+}
+
+/* CSS Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1 {
+    animation: fadeIn 3s ease-in-out;
+    color: #d9b3c8;
+    text-align: center;
+}
