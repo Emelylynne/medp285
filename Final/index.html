@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beach Types</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    .beach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .beach-grid article {
+      background-color: #bbdcec;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .beach-grid article:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Beautiful Beaches</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="types.html">Types</a>
+      <a href="conservation.html">Conservation</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="beach-grid">
+      <article>
+        <h2>Sandy Beach</h2>
+        <img src="sandy beach.jpg" alt="Sandy Beach">
+        <p>Fine golden sand, perfect for sunbathing and beach sports.</p>
+      </article>
+      <article>
+        <h2>Rocky Beach</h2>
+        <img src="rocky beach.jpg" alt="Rocky Beach">
+        <p>Scenic and rugged, ideal for exploration and photography.</p>
+      </article>
+      <article>
+        <h2>Coral Beach</h2>
+        <img src="coral beach.jpg" alt="Coral Beach">
+        <p>Composed of coral fragments, known for its vibrant textures.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Emely Peralta</p>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      $('.beach-grid article').hide().each(function (index) {
+        $(this).delay(300 * index).fadeIn(800);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beach Conservation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      background-color: #7bbff0;
+    }
+
+    header, footer {
+      background-color: #69b0df;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+      margin-bottom: 2rem;
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .fact {
+      flex: 1 1 250px;
+      background-color: #c7e4e7;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .fact:hover {
+      transform: scale(1.05);
+      background-color: #58a5d4;
+    }
+
+    .animated-img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Beach Conservation</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="types.html">Types</a>
+      <a href="conservation.html">Conservation</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>Why Conservation Matters</h2>
+      <p>Beaches are not only beautiful, but they are crucial ecosystems that support marine life, protect shorelines, and provide recreation for millions of people.</p>
+      <img src="ocean conservation.jpeg" alt="Ocean Conservation" class="animated-img">
+    </section>
+
+    <section class="section">
+      <h2>What You Can Do</h2>
+      <ul class="facts">
+        <li class="fact">Avoid single-use plastics at the beach.</li>
+        <li class="fact">Participate in beach clean-ups.</li>
+        <li class="fact">Support organizations that protect marine life.</li>
+        <li class="fact">Respect wildlife and nesting zones.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Fun Fact</h2>
+      <p>Praia do Cassino in Brazil is the world's longest beach, stretching over 150 miles!</p>
+    </section>
+    <section class="section">
+        <h2>Underwater Life</h2>
+        <p>Watch fish swim as you scroll through beach conservation info!</p>
+        <div id="sketch-holder" style="margin-top: 1rem;"></div>
+      </section>
+      
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Beautiful Beaches</p>
+  </footer>
+
+  <script>
+    $(window).on('scroll', function () {
+      $('.section').each(function () {
+        const top = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowHeight = $(window).height();
+        if (scroll + windowHeight > top + 100) {
+          $(this).addClass('visible');
+        }
+      });
+    });
+
+    // Trigger on load if already in view
+    $(window).trigger('scroll');
+  </script>
+</body>
+<script>
+    let fish = [];
+    let bubbles = [];
+  
+    function setup() {
+      let canvas = createCanvas(400, 200);
+      canvas.parent('sketch-holder');
+  
+      // Create fish
+      for (let i = 0; i < 5; i++) {
+        fish.push({
+          x: random(width),
+          y: random(height),
+          speed: random(1, 2),
+          color: color(random(100, 255), random(100, 255), random(100, 255))
+        });
+      }
+  
+      // Create bubbles
+      for (let i = 0; i < 15; i++) {
+        bubbles.push({
+          x: random(width),
+          y: random(height),
+          radius: random(5, 15),
+          speed: random(0.5, 1.5)
+        });
+      }
+    }
+  
+    function draw() {
+      background('#b2ebf2'); // ocean blue
+  
+      // Draw and move bubbles
+      noStroke();
+      fill(255, 255, 255, 100);
+      for (let b of bubbles) {
+        ellipse(b.x, b.y, b.radius);
+        b.y -= b.speed;
+        if (b.y < 0) b.y = height;
+      }
+  
+      // Draw and move fish
+      for (let f of fish) {
+        fill(f.color);
+        ellipse(f.x, f.y, 30, 15); // fish body
+        triangle(f.x - 15, f.y, f.x - 25, f.y - 5, f.x - 25, f.y + 5); // tail
+  
+        f.x += f.speed;
+        if (f.x > width + 30) f.x = -30;
+      }
+    }
+  </script>
+  
+</html>
